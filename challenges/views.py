@@ -77,7 +77,7 @@ def monthly_challenge(request, month):
         # Return the challenge text wrapped in an <h1> tag.
         response_data = render(request, "challenges/challenge.html", {
             "text": challenge_text,
-            "month_name": month.capitalize()
+            "month_name": month
         })
         return HttpResponse(response_data)
 
