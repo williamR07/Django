@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
 
 # Dictionary holding monthly challenges where the key is the month (in lowercase)
 # and the value is the challenge text for that month.
@@ -76,7 +75,7 @@ def monthly_challenge(request, month):
         challenge_text = monthly_challenges[month]
 
         # Return the challenge text wrapped in an <h1> tag.
-        response_data = render_to_string("challenges/challenge.html")
+        response_data = render(request, "challenges/challenge.html")
         return HttpResponse(response_data)
 
     except:
