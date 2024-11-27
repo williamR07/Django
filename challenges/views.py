@@ -24,26 +24,11 @@ monthly_challenges = {
 
 
 def index(request):
-    list_items = ""  # Initialize an empty string for list items (HTML).
-
     # Get the list of months (keys from the dictionary).
     months = list(monthly_challenges.keys())
-
-    # Loop through each month and create a list item with a link.
-    for month in months:
-        # Capitalize the month name for better presentation.
-        capitalized_month = month.capitalize()
-
-        # Create the URL path for the month challenge using the `reverse()` function and the month name.
-        month_path = reverse("month-challenge", args=[month])
-
-        # Build the list item HTML with a link.
-        list_items += f"<li><a href='{month_path}'> {
-            capitalized_month} </a></li>"
-
-    # Wrap the list items in a <ul> (unordered list) and return as the response.
-    response_data = f"<ul>{list_items}</ul>"
-    return HttpResponse(response_data)
+    return render(request, "challenges/index.html", {
+        "months": months
+    })
 
 # View function that handles the month-based URL with the month number.
 # It redirects the user to the appropriate month's challenge page.
