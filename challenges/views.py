@@ -16,7 +16,7 @@ monthly_challenges = {
     "september": "Eat no meat for the entire month!",
     "october": "Walk at least for 20 minutes a every day!",
     "november": "Learn django at least 20 minutes a day",
-    "december": "Christmas is soon"
+    "december": None
 }
 
 # View function that handles the root URL (index).
