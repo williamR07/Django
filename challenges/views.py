@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 # Dictionary holding monthly challenges where the key is the month (in lowercase)
 # and the value is the challenge text for that month.
@@ -60,13 +61,11 @@ def monthly_challenge(request, month):
         challenge_text = monthly_challenges[month]
 
         # Return the challenge text wrapped in an <h1> tag.
-        response_data = render(request, "challenges/challenge.html", {
+        return render(request, "challenges/challenge.html", {
             "text": challenge_text,
             "month_name": month
             
         })
-        return HttpResponse(response_data)
 
     except:
-        # If the month is not in the dictionary, return a 404 error with a custom message.
-        return HttpResponseNotFound("<h1>Month is not supported :(</h1>")
+        raise Http404()
