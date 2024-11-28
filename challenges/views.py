@@ -63,6 +63,7 @@ def monthly_challenge(request, month):
         response_data = render(request, "challenges/challenge.html", {
             "text": challenge_text,
             "month_name": month
+            
         })
         return HttpResponse(response_data)
 
